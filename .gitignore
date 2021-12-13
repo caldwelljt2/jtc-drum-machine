@@ -9,7 +9,7 @@
 /coverage
 
 # production
-/build
+# /build (removed to allow hosting from github for FCC tests)
 
 # misc
 .DS_Store
