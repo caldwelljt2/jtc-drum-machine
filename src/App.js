@@ -7,11 +7,25 @@ import {bankOne, bankTwo } from './KeybankData'
 
 
 function App() {
+  let KeyDatabase = []
+  for (let i in bankOne) {
+    KeyDatabase.push(i)
+  }
+  // const displayThis = KeyDatabase.map((key) => {return <h1>{key}</h1>})
+  const drumPads = KeyDatabase.map((key) => {return         <DrumPad padName={key} />})
+  // const drumPads = bankOne.length
+  // console.log(KeyDatabase)
+  // .map((item) => {return <DrumPad padName={bankOne.A.keyTrigger} />})
   return (
     <div className="App">
       <header className="drum-machine" id="drum-machine">
         <div id="display"></div>
-        <DrumPad padName="Q" />
+        {/* <h1>{bankOne.A.id}</h1> */}
+        <h1>Drum Kit on-line by JTC</h1>
+        <p>hit buttons to play or hit keyboard keys if you have them</p>
+        {drumPads}
+        {/* <DrumPad padName={bankOne.A.keyTrigger} /> */}
+        {/* <DrumPad padName="Q" />
         <DrumPad padName="W" />
         <DrumPad padName="E" />
         <DrumPad padName="A" />
@@ -19,7 +33,7 @@ function App() {
         <DrumPad padName="D" />
         <DrumPad padName="Z" />
         <DrumPad padName="X" />
-        <DrumPad padName="C" />
+        <DrumPad padName="C" /> */}
       </header>
     </div>
   );
@@ -54,9 +68,10 @@ const handleSoundPlay = (event) => {
     
 // event listener high (i.e. window.addEventListener('resize', handleResize))
     return () => {
+      document.removeEventListener('keydown')
       // remove listeners here
     }
-  },[])
+  }, [])
 
   return (
     <div className="drum-pad">
