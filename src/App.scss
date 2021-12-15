@@ -1,11 +1,43 @@
 .App {
   text-align: center;
+  display: flex;
+  // align-items: center;
+  justify-content: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#drum-machine {
+  display: flex;
+  flex-direction: column;
+  min-width: 400px;
+  min-height: 500px;
+  background: darkgrey;
 }
+
+#display {
+  background: lightgrey;
+}
+
+#drum-buttons {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.drum-button {
+  width: 100%;
+  height: 100%;
+}
+
+.drum-pad {
+  border: 1px solid blue;
+  width: 25%;
+  height: 100%;
+}
+
+// .App-logo {
+//   height: 40vmin;
+//   pointer-events: none;
+// }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
