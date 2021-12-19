@@ -27,7 +27,6 @@ function App() {
         </div>
         <div id="drum-buttons">
           {DrumPads}
-          {/* <DrumPad padLetter="A" /> */}
           <button onClick={() => setCurrentBank(bankOne)}>Bank1</button>
           <button onClick={() => setCurrentBank(bankTwo)}>Bank2</button>
         </div>
@@ -39,12 +38,9 @@ function App() {
 
 const DrumPad = (props) => {
 
-  //  const [test, testUp] = useState(0)
-
-  //  let testUp = testUp + 1
   const {currentBank, setCurrentBank} = useContext(KeyBankContext)
 
-  const handleSoundPlay = (event) => { // removed padLetter here temp
+  const handleSoundPlay = (event) => { 
     console.log(event, props.padLetter)
     console.log(currentBank[props.padLetter])
     const mySound = new Audio(currentBank[props.padLetter].url)
@@ -55,7 +51,7 @@ const DrumPad = (props) => {
     if (event.keyCode === currentBank[props.padLetter].keyCode) {
       console.log('you hit ' + props.padLetter)
       console.log('currentBank is currently ');
-      console.log(currentBank)  // STOPPED HERE, this is not updating
+      console.log(currentBank)  // <--- ISSUE, this will not update if not included, why?
       handleSoundPlay(props.padLetter)
     } else {
       console.log('keypress ignored')
@@ -63,19 +59,12 @@ const DrumPad = (props) => {
   }
 
   useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown
-      // function clickIt(event) {
-      //   if (event.keyCode === bankOne[props.padLetter].keyCode) {
-      //     console.log('you hit ' + props.padLetter)
-      //     handleSoundPlay(props.padLetter)
-      //   }
-      // }
-    );
+    document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps -- watching [] = run once
-  }, [])
+  }, [currentBank]) // must watch for changes to keybank and reload (is this correct?)
 
   return (
     <div className="drum-pad">
