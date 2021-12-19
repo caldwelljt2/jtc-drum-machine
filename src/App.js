@@ -69,7 +69,8 @@ const DrumPad = (props) => {
   return (
     <div className="drum-pad">
       <button onClick={handleSoundPlay} className="drum-button">{props.padLetter}</button>
-      <audio id={props.padLetter} className="clip"><source src={bankOne[props.padLetter].url}></source></audio>
+      {/* I don't think this next line gets used right now, but FCC calls for it? */}
+      <audio id={props.padLetter} className="clip" src={currentBank[props.padLetter].url}></audio> 
     </div>
   )
 }
