@@ -1,0 +1,56 @@
+// eslint-disable-next-line
+import React, { useState, useEffect, useRef } from 'react';
+import './App.scss';
+// eslint-disable-next-line
+import { bankOne, bankTwo } from './KeybankData'
+
+
+function App() {
+  let KeyDatabase = []
+  for (let i in bankOne) {
+    KeyDatabase.push(i)
+  }
+  const drumPads = KeyDatabase.map((key) => { return <DrumPad padName={key} /> })
+  return (
+    <div className="App">
+      <header className="drum-machine" id="drum-machine">
+        <div id="display">
+          <h1>Drum Kit on-line by JTC</h1>
+          <p>hit buttons to play or hit keyboard keys if you have them</p>
+        </div>
+        <div id="drum-buttons">
+          {drumPads}
+        </div>
+      </header>
+    </div>
+  );
+}
+
+const DrumPad = (props) => {
+
+  // console.log('top of DrumPad component function')
+
+  const handleSoundPlay = (event, padName) => {
+    console.log(event, padName)
+    const mySound = new Audio(bankOne[props.padName].url)
+    mySound.play()
+  }
+
+  useEffect(() => {
+    document.addEventListener('keydown', function clickIt(event) {
+      if (event.keyCode === bankOne[props.padName].keyCode) {
+        console.log('you hit ' + props.padName)
+        handleSoundPlay(props.padName)
+      }
+    })
+  }, [])
+
+  return (
+    <div className="drum-pad">
+      <button onClick={handleSoundPlay} className="drum-button">{props.padName}</button>
+      <audio id={props.padName} className="clip"><source src={bankOne[props.padName].url}></source></audio>
+    </div>
+  )
+}
+
+export default App;
