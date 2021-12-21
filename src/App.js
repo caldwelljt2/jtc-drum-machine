@@ -18,7 +18,38 @@ function App() {
   for (let keyLetter in bankOne) {
     letterList.push(keyLetter)
   }
-  const DrumPads = letterList.map((letter) => { return <DrumPad padLetter={letter} /> })
+
+  const handleSoundPlayParent = (event, padLetter) => { 
+    console.log(event, padLetter)
+    console.log(currentBank[padLetter])
+    const mySound = new Audio(currentBank[padLetter].url)
+    mySound.play()
+  }
+
+  const handleKeyDownParent = (event, padLetter) => {
+    console.log('moo')
+    console.log(event, padLetter)
+    for (const key in currentBank) {
+      if (event.keyCode === currentBank[key].keyCode) {
+        console.log('you hit ' + padLetter)
+        console.log('currentBank is currently ');
+        console.log(currentBank)  // <--- ISSUE, this will not update if not included, why?
+        // handleSoundPlay(padLetter)
+        handleSoundPlayParent(event, currentBank[key].keyTrigger)
+      } else {
+        console.log('keypress ignored')
+      }
+    }
+  }
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDownParent);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDownParent)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- watching [] = run once
+  }, [currentBank])
+
+  const DrumPads = letterList.map((letter) => { return <DrumPad padLetter={letter} playSound={handleSoundPlayParent} handleKeyDown={handleKeyDownParent} /> })
   return (
     <KeyBankContext.Provider value={{currentBank, setCurrentBank}}>
     <div className="App">

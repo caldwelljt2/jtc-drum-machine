@@ -15,6 +15,10 @@
   min-width: 400px;
   min-height: 500px;
   background: darkgrey;
+  // &:nth-child(1) {
+  //     clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  //     // border-radius: 409
+  // }
 }
 
 #display {
@@ -24,7 +28,7 @@
 #drum-buttons {
   display: flex;
   flex-wrap: wrap;
-
+  align-items: center;
 }
 
 .drum-button {
@@ -33,10 +37,42 @@
 }
 
 .drum-pad {
-  border: 1px solid blue;
-  width:33%;
+  // border: 1px solid blue;
+  width: 33%;
   height: 100%;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  &:nth-child(odd) {
+    transform: rotate(180deg);
+    // border-radius: 40;
+    & > button {
+      transform: rotate(180deg);
+    }
+  }
+  &:nth-child(3n+3) {
+    position: relative;
+    right: 65px;
+  }
+  &:nth-child(3n+1) {
+    position: relative;
+    left: 65px;
+  }
+  // &:nth-child(even) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnm
+  //   // border-radius: 40;
+  // }
 }
+
+// .padQ, .padA, .padZ {
+//   position: relative;
+//   left: 65px;
+//   border: 3px solid #73AD21;
+// }
+
+// .padE, .padD, .padC {
+//   position: relative;
+//   right: 65px;
+//   border: 3px solid #73AD21;
+// }
+
 
 // .App-logo {
 //   height: 40vmin;
@@ -49,29 +85,29 @@
 //   }
 // }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+// .App-header {
+//   background-color: #282c34;
+//   min-height: 100vh;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   font-size: calc(10px + 2vmin);
+//   color: white;
+// }
 
-.App-link {
-  color: #61dafb;
-}
+// .App-link {
+//   color: #61dafb;
+// }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+// @keyframes App-logo-spin {
+//   from {
+//     transform: rotate(0deg);
+//   }
+//   to {
+//     transform: rotate(360deg);
+//   }
+// }
 
 @media (max-width: 768px) {
   #drum-machine {
@@ -79,7 +115,7 @@
     min-height: 100%;
   }
   .drum-pad {
-    border: 1px solid blue;
+    // border: 1px solid blue;
     width: 33%;
     height: 100%;
     min-width: 100px;

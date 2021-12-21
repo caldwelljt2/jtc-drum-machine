@@ -1,19 +1,20 @@
-export const bankOne = {
-    "Q": {
+// export 
+const bankOne = {
+    'Q': {
         keyCode: 81,
         keyTrigger: 'Q',
         id: 'Heater-1',
         url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3'
     },
 
-    "W": {
+    'W': {
         keyCode: 87,
         keyTrigger: 'W',
         id: 'Heater-2',
         url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3'
     },
 
-    "E": {
+    'E': {
         keyCode: 69,
         keyTrigger: 'E',
         id: 'Heater-3',
@@ -55,7 +56,7 @@ export const bankOne = {
         url: 'https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3'
     },
 
-    "C": {
+    'C': {
         keyCode: 67,
         keyTrigger: 'C',
         id: 'Closed-HH',
@@ -65,7 +66,8 @@ export const bankOne = {
 
 
 
-export const bankTwo = {
+// export
+ const bankTwo = {
     'Q': {
         keyCode: 81,
         keyTrigger: 'Q',
@@ -73,14 +75,14 @@ export const bankTwo = {
         url: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3'
     },
 
-    'W':{
+    'W': {
         keyCode: 87,
         keyTrigger: 'W',
         id: 'Chord-2',
         url: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3'
     },
 
-    'E':{
+    'E': {
         keyCode: 69,
         keyTrigger: 'E',
         id: 'Chord-3',
@@ -94,21 +96,21 @@ export const bankTwo = {
         url: 'https://s3.amazonaws.com/freecodecamp/drums/Give_us_a_light.mp3'
     },
 
-    'S':{
+    'S': {
         keyCode: 83,
         keyTrigger: 'S',
         id: 'Open-HH',
         url: 'https://s3.amazonaws.com/freecodecamp/drums/Dry_Ohh.mp3'
     },
 
-    'D':{
+    'D': {
         keyCode: 68,
         keyTrigger: 'D',
         id: 'Closed-HH',
         url: 'https://s3.amazonaws.com/freecodecamp/drums/Bld_H1.mp3'
     },
 
-    'Z':{
+    'Z': {
         keyCode: 90,
         keyTrigger: 'Z',
         id: 'Punchy-Kick',
@@ -122,7 +124,7 @@ export const bankTwo = {
         url: 'https://s3.amazonaws.com/freecodecamp/drums/side_stick_1.mp3'
     },
 
-    'C':{
+    'C': {
         keyCode: 67,
         keyTrigger: 'C',
         id: 'Snare',
@@ -130,5 +132,7 @@ export const bankTwo = {
     }
 };
 
-    // let keyData = {}
-// export default keyData = {bankTwo, bankOne}
+module.exports = {
+    bankOne: bankOne,
+    bankTwo: bankTwo,
+}
