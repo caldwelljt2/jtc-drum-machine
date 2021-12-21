@@ -13,6 +13,7 @@ import { bankOne, bankTwo } from './KeybankData'
 function App() {
 
   const [currentBank, setCurrentBank] = useState(bankOne)
+  const [display, setDisplay] = useState('')
 
   let letterList = []
   for (let keyLetter in bankOne) {
@@ -24,6 +25,11 @@ function App() {
     console.log(currentBank[padLetter])
     const mySound = new Audio(currentBank[padLetter].url)
     mySound.play()
+    for (const key in currentBank) {
+      if (padLetter === currentBank[key].keyTrigger) {
+        setDisplay(currentBank[key].id)
+      }
+    }
   }
 
   const handleKeyDownParent = (event, padLetter) => {
@@ -31,11 +37,13 @@ function App() {
     console.log(event, padLetter)
     for (const key in currentBank) {
       if (event.keyCode === currentBank[key].keyCode) {
-        console.log('you hit ' + padLetter)
-        console.log('currentBank is currently ');
-        console.log(currentBank)  // <--- ISSUE, this will not update if not included, why?
-        // handleSoundPlay(padLetter)
+        // console.log('you hit ' + padLetter)
+        // console.log('currentBank is currently ');
+        // console.log(currentBank)  // <--- ISSUE, this will not update if not included, why?
+        // // handleSoundPlay(padLetter)
+
         handleSoundPlayParent(event, currentBank[key].keyTrigger)
+        setDisplay(currentBank[key].id)
       } else {
         console.log('keypress ignored')
       }
@@ -49,14 +57,17 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps -- watching [] = run once
   }, [currentBank])
 
-  const DrumPads = letterList.map((letter) => { return <DrumPad padLetter={letter} playSound={handleSoundPlayParent} handleKeyDown={handleKeyDownParent} /> })
+  const DrumPads = letterList.map((letter) => { return <DrumPad padLetter={letter} playSound={handleSoundPlayParent} handleKeyDown={handleKeyDownParent} setDisplay={setDisplay}/> })
   return (
     <KeyBankContext.Provider value={{currentBank, setCurrentBank}}>
     <div className="App">
       <header className="drum-machine" id="drum-machine">
-        <div id="display">
+        <div id="header">
           <h1>Drum Kit on-line by JTC</h1>
           <p>hit buttons to play or hit keyboard keys if you have them</p>
+        </div>
+        <div id="display">
+          Current bank: {display}
         </div>
         <div id="drum-buttons">
           {DrumPads}
